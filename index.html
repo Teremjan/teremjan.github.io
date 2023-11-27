@@ -91,7 +91,7 @@
     <form id="form">
         <h1>Оформляем</h1>
         <input type="text" placeholder="Name" id="user_name">
-        <input type="text" placeholder="Email" id="user_phone">
+        <input type="text" placeholder="Phone Number" id="user_phone">
         <input type="text" placeholder="NP Department" id="user_np">
         <button id="order">Order now!</button>
     </form>
@@ -108,6 +108,21 @@
         })
 
         order.addEventListener("click", () => {
+            let name = document.getElementById("user_name").value;
+            let phone = document.getElementById("user_phone").value;
+            let np = document.getElementById("user_np").value;
+            if(name.length < 5) {
+                document.getElementById("error").innerText = "Name error!";
+                return;
+            }
+            if(phone.length < 11) {
+                document.getElementById("error").innerText = "Invalid phone number!";
+                return;
+            }
+            if(np.length < 5) {
+                document.getElementById("error").innerText = "There's no NP Department!";
+                return;
+            }
           tg.close();
         })
     </script>
