@@ -92,7 +92,8 @@
         <h1>Оформляем</h1>
         <input type="text" placeholder="Name" id="user_name">
         <input type="text" placeholder="Phone Number" id="user_phone">
-        <input type="text" placeholder="NP Department" id="user_np">
+        <input type="text" placeholder="NP Department" id="user_np">\
+        <div> id ="error"</div>
         <button id="order">Order now!</button>
     </form>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -108,6 +109,7 @@
         })
 
         order.addEventListener("click", () => {
+            document.getElementById("error").innerText = '';
             let name = document.getElementById("user_name").value;
             let phone = document.getElementById("user_phone").value;
             let np = document.getElementById("user_np").value;
@@ -123,6 +125,14 @@
                 document.getElementById("error").innerText = "There's no NP Department!";
                 return;
             }
+            
+            let data = {
+                name: name,
+                phone: phone,
+                np: np
+            }
+            tg.sendData(JSON.stringify(data));
+
           tg.close();
         })
     </script>
